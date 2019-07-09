@@ -1,0 +1,44 @@
+version: '2'
+
+services:
+  web:
+    build: src/.
+    environment:
+      - POSTGRES_USER=dev
+      - POSTGRES_PASSWORD=dev
+      - POSTGRES_DB=queuetest
+      - POSTGRES_HOST=queuebull_db_1
+      - AMBIENTE=DESENV
+      - HOST=localhost:3000
+    ports:
+      - "3000:3000"   #web service port
+      - "5859:5859"   #debug port
+    volumes:
+      - ./:/queuebull
+    networks:
+        - queue-network
+    working_dir: /queuebull
+    command: sh -c "npm install && cd src && nodemon app.js"
+    depends_on:
+      - db
+      - redis
+    container_name: web
+    
+  db:
+    build: database/.
+    ports:
+      - "5432:5432"
+    networks:
+        - queue-network
+
+  redis:
+    build: redis/.
+    # command: redis-server
+    ports:
+      - "6379:6379"
+    networks:
+      - queue-network
+
+networks:
+  queue-network:
+    driver: bridge

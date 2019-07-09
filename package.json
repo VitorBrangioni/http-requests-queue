@@ -1,0 +1,21 @@
+{
+  "name": "VitorBrangioni",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "VitorBrangioni",
+  "license": "ISC",
+  "homepage": "https://www.linkedin.com/in/vitor-brangioni-9b9031101/",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "bull": "^3.10.0",
+    "console-stamp": "^0.2.7",
+    "cors": "^2.8.4",
+    "express": "^4.14.0",
+    "pg": "^7.5.0",
+    "sequelize": "^4.39.0"
+  }
+}
