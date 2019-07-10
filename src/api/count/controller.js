@@ -1,22 +1,18 @@
 const { Count } = require('./../../config/models');
+const Bull = require('bull');
+const Queue = new Bull('Queue', { redis: { port: 6379, host: 'queuebull_redis_1' } });
 
-exports.sum = async (req, res, done) => {
+exports.sum = async (req, res) => {
     let { sum } = req.body;
-
     const myCount = await Count.findOne({ where: { id: 1 } });
     sum = myCount.sum + sum;
 
-    Count.update({ sum }, { where: { id: 1 } })
-        .then(
+    return Count.update({ sum }, { where: { id: 1 } })
+        .then( 
         rows => {
-            console.log("new sum = ", sum)
-            res.status(200).json({ sum })
-            done(); 
+            console.log(`${myCount.sum} + 1 = ${sum}`)
+            return res.sendStatus(200);
         },
-        err => {
-            console.log(err)
-            res.status(500).json(err);
-            done(); 
-        },
-    )
+        err => res.sendStatus(500)
+        )
 }

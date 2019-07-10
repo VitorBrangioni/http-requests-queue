@@ -10,6 +10,7 @@
   "license": "ISC",
   "homepage": "https://www.linkedin.com/in/vitor-brangioni-9b9031101/",
   "dependencies": {
+    "axios": "^0.19.0",
     "body-parser": "^1.15.2",
     "bull": "^3.10.0",
     "console-stamp": "^0.2.7",
