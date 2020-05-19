@@ -2,12 +2,6 @@ const Sequelize = require('sequelize');
 const { readdirSync, statSync } = require('fs')
 const { join } = require('path')
 
-/* Sequelize.DATE.prototype._stringify = function _stringify(date, options) {
-	date = this._applyTimezone(date, options);
-
-	return date.format('YYYY-MM-DD HH:mm:ss.SSS');
-}; */
-
 var log = process.env.SEQUELIZE_LOGGING ? console.log : false;
 var options = {
 	host: process.env.POSTGRES_HOST,
@@ -16,7 +10,6 @@ var options = {
 	pool: {
 		max: 10,
 		min: 0,
-		// evict: 900000,
 		idle: 900000,
 		acquire: 1000000
     },
