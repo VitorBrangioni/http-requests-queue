@@ -3,7 +3,7 @@ const controller = require('./controller');
 const axios = require('axios');
 const router = new Router();
 const Bull = require('bull');
-const Queue = new Bull('Queue', { redis: { port: 6379, host: 'queuebull_redis_1' } });
+const Queue = new Bull('Queue', { redis: { port: 6379, host: 'redis' } });
 
 
 router.post('/add-queue', (req, res) => {

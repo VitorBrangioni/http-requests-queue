@@ -7,7 +7,7 @@ services:
       - POSTGRES_USER=dev
       - POSTGRES_PASSWORD=dev
       - POSTGRES_DB=queuetest
-      - POSTGRES_HOST=queuebull_db_1
+      - POSTGRES_HOST=database
       - AMBIENTE=DESENV
       - HOST=localhost:3000
     ports:
@@ -30,6 +30,7 @@ services:
       - "5432:5432"
     networks:
         - queue-network
+    container_name: database
 
   redis:
     build: redis/.
@@ -38,6 +39,7 @@ services:
       - "6379:6379"
     networks:
       - queue-network
+    container_name: redis
 
 networks:
   queue-network:
