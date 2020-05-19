@@ -16,9 +16,8 @@ router.post('/sum', (req, res) => {
 });
 
 Queue.process(async (job) => {
-    console.log("***** EXECUTANDO FILA ****")
-    console.log(job.data);
-    return axios.post('http://localhost:3000/api/count/sum', job.data);
+    const { sum } = job.data;
+    return controller._sum(sum)
 });
 
 exports.router = router;
